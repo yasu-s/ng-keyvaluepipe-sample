@@ -29,6 +29,10 @@ npm install
 npm start
 ```
 
+## 4. 実行結果
+
+![browser](https://user-images.githubusercontent.com/2668146/43353348-1df19dce-9271-11e8-9e77-362040b87126.png)
+
 # サンプルソース
 
 ## src/app/app.component.ts
@@ -38,11 +42,25 @@ import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  template: `
+    <!-- using KeyValuePipe for Associative array -->
+    <h3>keyValues loop</h3>
+    <ul>
+      <li *ngFor="let pair of keyValues | keyvalue">
+        {{ pair.key }}: {{ pair.value }}
+      </li>
+    </ul>
+
+    <!-- using KeyValuePipe for Map -->
+    <h3>map loop</h3>
+    <ul>
+      <li *ngFor="let pair of map | keyvalue">
+        {{ pair.key }}: {{ pair.value }}
+      </li>
+    </ul>
+  `
 })
 export class AppComponent {
-
   /** Associative array */
   keyValues = {
     key1: 'value1',
@@ -56,30 +74,9 @@ export class AppComponent {
     ['mapKey2', 'mapValue2'],
     ['mapKey3', 'mapValue3'],
   ]);
-
 }
 ```
 
-## src/app/app.component.html
+# 参考URL  
 
-```html
-<!-- using KeyValuePipe for Associative array -->
-<h3>keyValues loop</h3>
-<ul>
-  <li *ngFor="let pair of keyValues | keyvalue">
-    {{ pair.key }}: {{ pair.value }}
-  </li>
-</ul>
-
-<!-- using KeyValuePipe for Map -->
-<h3>map loop</h3>
-<ul>
-  <li *ngFor="let pair of map | keyvalue">
-    {{ pair.key }}: {{ pair.value }}
-  </li>
-</ul>
-```
-
-## 実行結果
-
-![browser](https://user-images.githubusercontent.com/2668146/43353348-1df19dce-9271-11e8-9e77-362040b87126.png)
+* https://angular.io/api/common/KeyValuePipe
